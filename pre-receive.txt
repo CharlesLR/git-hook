@@ -1,0 +1,23 @@
+#!/bin/sh
+# CharlesLR - 11/10/2016
+# (c) Free !
+
+# your initialisation : protected branch name
+protected_branch="refs/heads/master"
+
+# ------------------------------------------------------------
+# program core : do not touch :-)
+
+# return value : 0 is OK
+return_value=0
+
+# test the query branch
+while read oldrev newrev refname ; do
+  if test "$refname" = "$protected_branch"
+    then
+      # return value : 1 is NOT OK
+      return_value=1
+    fi
+done
+
+exit $return_value
